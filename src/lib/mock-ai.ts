@@ -112,9 +112,9 @@ export function summarizeNotes(raw: string): Summary {
   const actions: ActionItem[] = source.slice(0, 5).map((l, i) => ({
     id: `a${i}`,
     task: capitalize(l.replace(/^[-*•]\s*/, "").slice(0, 90)),
-    owner: OWNERS[i % OWNERS.length],
-    priority: (["High", "Medium", "Low", "High", "Medium"] as Priority[])[i % 5],
-    deadline: DEADLINES[i % DEADLINES.length],
+    owner: OWNERS[i % OWNERS.length]!,
+    priority: (["High", "Medium", "Low", "High", "Medium"] as Priority[])[i % 5]!,
+    deadline: DEADLINES[i % DEADLINES.length]!,
   }));
 
   const executive = `The team covered ${lines.length} discussion points, converging on ${decisions.length} decisions and ${actions.length} concrete follow-ups. The dominant themes were delivery timing, ownership clarity, and unblocking the work already in flight. Momentum is good; the main risk is unassigned follow-through, which the action list below resolves.`;
@@ -153,7 +153,7 @@ export function generatePlan(input: string, timeframe: Timeframe, style: Style):
       : i < Math.ceil(items.length / 2)
         ? "Medium"
         : "Low",
-    minutes: durations[i % durations.length],
+    minutes: durations[i % durations.length]!,
   }));
 
   const sorted = [...tasks].sort(
@@ -176,7 +176,7 @@ export function generatePlan(input: string, timeframe: Timeframe, style: Style):
   const blocks: Block[] = labels.map((l) => ({ ...l, tasks: [] }));
   sorted.forEach((t, i) => {
     const idx = t.priority === "High" ? 0 : t.priority === "Medium" ? 1 : 2;
-    blocks[Math.min(idx + (i > 6 ? 1 : 0), 2)].tasks.push(t);
+    blocks[Math.min(idx + (i > 6 ? 1 : 0), blocks.length - 1)]!.tasks.push(t);
   });
 
   return blocks.filter((b) => b.tasks.length > 0);
