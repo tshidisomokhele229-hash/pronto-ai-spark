@@ -1,173 +1,97 @@
-# Spark Workflow
+# BrieflyAI — All-in-One AI Productivity & Workflow Suite
 
-Build a modern, high-conversion SaaS productivity web application called "JackOfAllTradesAI" (All-in-One AI Productivity & Workflow Suite).
+BrieflyAI (also branded as JackOfAllTradesAI) is a modern, high-conversion SaaS landing page and interactive workspace that demonstrates three core AI-powered productivity tools in a single responsive web app.
 
+![Built with Lovable](https://img.shields.io/badge/Built%20with-Lovable-ff69b4?logo=lovable)
 
+## What it does
 
+BrieflyAI helps knowledge workers write, summarize, and plan faster with an AI-assisted workspace:
 
-Tech Stack & Architecture
+1. **Smart Email Generator** — Draft professional emails in seconds. Choose a tone (Formal, Friendly, Persuasive, Urgent, Casual) and desired length, then get a ready-to-send message with one click.
+2. **Meeting Notes Summarizer** — Paste a transcript or raw notes and instantly receive an executive summary, key decisions, and a table of action items with owners and deadlines.
+3. **AI Task Planner** — Enter your tasks and pick a planning style (Time Blocking, Priority Matrix, or Energy Mapping) to generate an organized daily schedule with priority badges and interactive checkboxes.
 
-Framework: React + TypeScript + Vite
+The app also includes a sticky header, hero section, feature grid, "How It Works" steps, testimonials, FAQ accordion, newsletter signup, and footer.
 
-Styling: Tailwind CSS + Radix UI / Shadcn UI components
+## Tech stack
 
-Icons: lucide-react
+- **Framework:** [TanStack Start](https://tanstack.com/start) (React 19 + Vite 7)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **UI components:** shadcn/ui
+- **Notifications:** Sonner
+- **Routing:** TanStack Router (file-based)
 
-Interactivity: State-driven UI with realistic mock client-side generation logic, interactive filters, active state indicators, and copy/export actions.
+## Project structure
 
-Design System & Theme
+```text
+src/
+├── components/landing/   # Page sections and tool components
+│   ├── EmailTool.tsx
+│   ├── Hero.tsx
+│   ├── NotesTool.tsx
+│   ├── PlannerTool.tsx
+│   ├── Sections.tsx
+│   └── SiteHeader.tsx
+├── lib/
+│   └── mock-ai.ts        # Mock AI generation logic for email, notes, and planner
+├── routes/
+│   ├── __root.tsx        # Root layout (fonts, toaster, SEO metadata)
+│   └── index.tsx         # Landing page with tabbed workspace
+├── router.tsx            # TanStack Router setup
+├── server.ts             # Server entry
+├── start.ts              # Client entry
+└── styles.css            # Design tokens, utilities, and Tailwind theme
+```
 
-Vibe: Sleek modern SaaS (Linear/Vercel style), dark/light balanced slate aesthetic, subtle gradient borders, backdrop blur, clean typography (Inter/Sans), and refined micro-interactions.
+## Getting started
 
-Palette:
+### Prerequisites
 
+- Node.js 20+
+- A package manager such as `npm`, `pnpm`, or `bun`
 
-
-
-Primary: Deep Indigo / Violet (indigo-600)
-
-Neutral Dark: Slate 900 (#0F172A)
-
-Neutral Light: Slate 50 (#F8FAFC)
-
-Accent Success: Emerald (#10B981)
-
-Priority Tags: Rose (#F43F5E), Amber (#F59E0B), Slate (#64748B)
-
-Key Sections & Layout
-
-1. Sticky Navigation Header
-
-Brand logo with an AI spark icon and gradient text "BrieflyAI".
-
-Anchor navigation links: "Tools", "Features", "How It Works", "Testimonials".
-
-"Try Free" CTA button with hover glow animation.
-
-2. Hero Section
-
-Tagline pill: ⚡ Next-Gen Workplace Productivity.
-
-Main Headline: "Write Faster. Summarize Instantly. Plan Smarter."
-
-Sub-headline: "The unified AI workspace that turns messy notes into action items, crafts emails in your exact tone, and builds prioritized schedules in seconds."
-
-Quick-action buttons linking directly to each of the 3 workspace tabs.
-
-Social proof metric badges (e.g., "10x Faster Output", "99.4% Accuracy").
-
-3. Core Interactive Workspace (Tabbed Dashboard)
-
-Implement a clean, centralized workspace using Shadcn Tabs with full working mock generation logic and loading states:
-
-
-
-
-Tab 1: ✉️ Smart Email Generator
-
-
-
-
-Inputs: Key points / Context (Textarea), Recipient Role (Input), Tone Selector (Pill buttons: Formal, Friendly, Persuasive, Concise, Urgent), Output Length (Short, Medium, Detailed).
-
-Actions: "Generate Email" button with realistic spinner state.
-
-Output Panel: Formatted Subject line field, email body container, character/word counter, and a functional "Copy to Clipboard" button with toast notification.
-
-Tab 2: 📝 Meeting Notes Summarizer
-
-
-
-
-Inputs: Raw transcript or messy notes (Textarea) with a "Load Sample Transcript" helper button.
-
-Actions: "Analyze & Summarize" button.
-
-Output Dashboard:
-
-
-
-
-Executive Summary Card (concise overview paragraph).
-
-Key Decisions List (bulleted takeaways with checkmark badges).
-
-Action Items Table (Columns: Task, Owner, Priority, Deadline) with interactive checkboxes.
-
-"Export Summary" button (downloads as formatted Markdown or text file).
-
-Tab 3: 🗓️ AI Task Planner & Scheduler
-
-
-
-
-Inputs: Unorganized to-do list / project goals (Textarea), Timeframe toggle ("Daily Breakdown" vs. "Weekly Sprint"), Planning Style (Deep Work, Balanced, Quick Wins).
-
-Actions: "Generate Schedule" button.
-
-Output View: Interactive schedule view:
-
-
-
-
-Grouped time blocks (Morning Focus 09:00–12:00, Afternoon Collab 13:00–16:00, Wrap-up 16:00–17:00).
-
-Task cards with dynamic Priority Badges (High, Medium, Low), estimated time durations (e.g., "45 mins"), and toggleable completion checkboxes.
-
-4. Feature Highlights Grid
-
-4-card feature grid with subtle hover animations and clean iconography:
-
-
-
-
-Context-Aware Email Engine
-
-Intelligent Decision Extraction
-
-Eisenhower Matrix Auto-Priority
-
-One-Click Team Export
-
-5. User Testimonials & Proof
-
-3-column responsive card layout featuring customer quotes, avatars, ratings (5 stars), and job titles (Product Manager, Founder, Executive Assistant).
-
-6. Interactive FAQ Accordion
-
-4 collapsible questions covering data privacy, output accuracy, export formats, and workflow integrations.
-
-7. Modern SaaS Footer
-
-Company links, resource links, legal terms, newsletter signup field, and social icons.
-
-UX & Polish Requirements
-
-Ensure every tab has working pre-filled default examples and sample buttons so the tools are immediately testable.
-
-Include smooth toast notifications using Sonner or Shadcn Toast when users copy text or complete tasks.
-
-Mobile-responsive layout where the workspace gracefully stacks on smaller screens.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://pronto-ai-spark.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/9ce3ff4e-b8bc-453a-a019-28aebdfe55cd).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+### Install dependencies
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
+```
+
+### Run the development server
+
+```sh
 npm run dev
 ```
+
+The app will be available at `http://localhost:8080`.
+
+### Build for production
+
+```sh
+npm run build
+```
+
+## Key features
+
+- **Responsive design** — Works seamlessly on desktop, tablet, and mobile.
+- **Interactive workspace** — Three tabbed tools with realistic mock generation logic.
+- **Loading states** — Each tool shows a skeleton/loading state while "AI" processes.
+- **Toast notifications** — Copy, export, and success feedback via Sonner.
+- **Accessible UI** — Built on shadcn/ui primitives with keyboard-friendly controls.
+- **SEO-ready** — Unique page titles, descriptions, and Open Graph metadata per route.
+
+## Customization
+
+- **Colors & theme:** Edit `src/styles.css` to update Tailwind theme variables and custom utilities.
+- **Mock AI logic:** Update `src/lib/mock-ai.ts` to change sample data or replace mocks with real API calls.
+- **Content:** Modify `src/components/landing/Sections.tsx` for testimonials, FAQ, and feature copy.
+- **Routes:** Add new pages under `src/routes/` using TanStack Router file conventions.
+
+## Deployment
+
+This project is built with [Lovable](https://lovable.dev). You can deploy directly from the Lovable editor or connect the project to GitHub to sync changes to your own repository.
+
+## License
+
+This project is generated for you. Feel free to customize and use it for your own product or business.
